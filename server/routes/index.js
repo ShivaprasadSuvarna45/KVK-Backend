@@ -1,4 +1,5 @@
-const userController = require('../controllers').user;
+const userController = require('../controllers').User;
+const userModal = require('../models').User;
 const generator = require('generate-password');
 const nodemailer = require('nodemailer');
 
@@ -40,10 +41,28 @@ app.post('/register', (req, res)=> {
 	    console.log('Email sent: ' + info.response);
 	  }
 	});
+  upsert({"password":password},{"name":userMail})
 	res.send('Successfully registeres user'+userMail);
 })
 
-
-  //api for creating the user
-  app.post('/createuser', userController.create);
 };
+
+
+function upsert(values, condition) {
+    return userModal
+        .findOne({ where: condition })
+        .then(function(obj) {
+            if(obj) { // update
+                return obj.update(values);
+            }
+            else { // insert
+                return userModal
+                       .create({
+                                name: condition.name,
+                                password: values.password
+                              })
+          .then(User => res.status(201).send(User))
+          .catch(error => res.status(400).send(error));
+            }
+        })
+    }
