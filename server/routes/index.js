@@ -63,7 +63,7 @@ app.post('/newregister', (req, res)=> {
   var batch = req.body.batch;
   var username = req.body.username;
   var phone = req.body.phone;
-	mailOptions.to="kvk.reu@gmail.com";
+	mailOptions.to='kvk.reu@gmail.com';
 	var password = generator.generate({
     	length: 10,
     	numbers: true
@@ -144,7 +144,6 @@ app.get('/login', (req, res)=> {
  });
 
  app.get('/getalldetails',(req,res) =>{
-   console.log("All details");
    getAllRecords(function(err,data){
       if(!err){
         res.send(data)
@@ -158,7 +157,6 @@ app.get('/login', (req, res)=> {
 };
 
 function upsert(values, condition,cb) {
-  console.log(values);
     return userModal
         .findOne({ where: condition })
         .then(function(obj) {
@@ -270,7 +268,6 @@ function getphotos(batch, username,attend_event,cb){
         "attend_event": attend_event
       }})
       .then(function(obj){
-        console.log("1");
         cb(null,obj);
       })
       .catch(function(error){
