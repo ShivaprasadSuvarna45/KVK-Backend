@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "Prasad$hiv45",
-    "database": "KVK",
-    "host": "localhost",
+    "username": "bqqhihtfbcoxiy",
+    "password": "c1c91681cda9e9f46fc242417dc26469fd42d2d93317e7d913805e9cc56b4aa0",
+    "database": "df930lj5n5r8en",
+    "host": "ec2-107-20-249-68.compute-1.amazonaws.com",
     "dialect": "postgres"
   },
   "test": {
@@ -14,10 +14,10 @@
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "bqqhihtfbcoxiy",
+    "password": "c1c91681cda9e9f46fc242417dc26469fd42d2d93317e7d913805e9cc56b4aa0",
+    "database": "df930lj5n5r8en",
+    "host": "ec2-107-20-249-68.compute-1.amazonaws.com",
+    "dialect": "postgres"
   }
 }
