@@ -35,12 +35,11 @@ app.post('/register', (req, res)=> {
     	length: 10,
     	numbers: true
 	});
-	mailOptions.text=' UserName:  '+userMail+'\npassword:  '+password;
+	mailOptions.text='UserName:  '+userMail+'\npassword:  '+password;
 	console.log(mailOptions);
 
-  upsert({'password':password},{'email':userMail}, function(err,data){
-    if(!err){
-      
+  upsert({"password":password},{"email":userMail}, function(err,data){
+    if(!err){      
       transporter.sendMail(mailOptions, function(error, info){
         if (error) {
           console.log(error);
@@ -49,13 +48,11 @@ app.post('/register', (req, res)=> {
         }
       });
       res.send("Registered Sucessfully");
-
     }
     else{
       res.send("Not a enrolled user")
     }
   });
-
 });
 
 app.post('/newregister', (req, res)=> {
@@ -69,7 +66,6 @@ app.post('/newregister', (req, res)=> {
     	numbers: true
 	});
 	mailOptions.text='UserName  :  '+username+'\n\nEmail : '+userMail+'\n\nBatch : '+batch+'\n\nPhone : '+phone+'\n\nPassword : '+password;
-  console.log(mailOptions);
   transporter.sendMail(mailOptions, function(error, info){
     if (error) {
       console.log(error);
@@ -91,12 +87,10 @@ app.post('/newregister', (req, res)=> {
 });
 
 app.get('/login', (req, res)=> {
-  console.log("Inside Login API");
    let email = req.query.mail;
    let password = req.query.password;
    comparePassword({'password':password}, {'email':email}, function(err,data){
      if(!err){
-       console.log(data.username);
        res.send(data);       
      }
      else{
@@ -106,16 +100,13 @@ app.get('/login', (req, res)=> {
  });
 
  app.post('/changepassword', (req,res)=>{
-   console.log("Inside change password");
    let email = req.body.mail;
    let password=req.body.password;
-   console.log(password);
    updatePassword({'password':password},{'email':email})
    res.send("Password uploaded Successfully");
  });
 
  app.post('/updatevalues', (req,res)=>{
-    console.log("updating values");
     let email = req.body.data.email;
     updateDB(req.body.data,{'email':email},function(err,data){
         if(!err){
@@ -129,7 +120,6 @@ app.get('/login', (req, res)=> {
  });
 
  app.get('/getalbums',(req,res)=>{
-    console.log("get pics");
     let batch = req.query.batch;
     let username = req.query.username;
     let attend_event = req.query.attend_event;
@@ -174,7 +164,6 @@ function upsert(values, condition,cb) {
  }
 
 function upsert1(values, condition,cb) {
-  console.log(values);
     return userModal
         .findOne({ where: condition })
         .then(function(obj) {
@@ -199,7 +188,7 @@ function upsert1(values, condition,cb) {
                         });
             }
         })
- }
+}
 
 function comparePassword(values,condition,cb){
   return userModal
@@ -220,7 +209,6 @@ function comparePassword(values,condition,cb){
         }
       })
       .catch(function(err){
-        console.log(err);
         cb(err);
       });
 }
@@ -239,9 +227,8 @@ function updatePassword(values,condition){
 }
 
 function updateDB(data,condition,cb){
-  console.log(data);
   var values = {'country':data.country,'city':data.city,'username':data.name,'batch':data.batch,'description':data.description,'profile_photo':data.profile_photo,'attend_event':data.attend_event,'meal_preference':data.meal_preference,'spouse':data.spouse,'family_members':data.family_members,'paid_via':data.paid_via,'confirmation_code':data.confirmation_code,'contribution_amount':data.contribution_amount,'payment_date':data.payment_date,'album_imgs':data.album_imgs}
-  console.log(values);
+
   return userModal
   .findOne({ where: condition })
   .then(function(obj) {
@@ -252,14 +239,11 @@ function updateDB(data,condition,cb){
     }
   })
   .catch(function(err){
-    console.log(err);
     cb(error)
   }); 
 }
 
 function getphotos(batch, username,attend_event,cb){
-  console.log(batch.batch);
-  console.log(username.username);
   if(batch.batch  && username.username && attend_event ){
       return userModal
       .findAll({ where:{
@@ -281,7 +265,6 @@ function getphotos(batch, username,attend_event,cb){
         'username': username.username,
       }})
       .then(function(obj){
-        console.log("1");
         cb(null,obj);
       })
       .catch(function(error){
@@ -295,7 +278,6 @@ function getphotos(batch, username,attend_event,cb){
       'attend_event': attend_event
     }})
     .then(function(obj){
-      console.log("1");
       cb(null,obj);
     })
     .catch(function(error){
@@ -309,7 +291,6 @@ function getphotos(batch, username,attend_event,cb){
       'attend_event': attend_event
     }})
     .then(function(obj){
-      console.log("1");
       cb(null,obj);
     })
     .catch(function(error){
@@ -322,7 +303,6 @@ function getphotos(batch, username,attend_event,cb){
       'batch':batch.batch
     }})
     .then(function(obj){
-      console.log(obj);
       cb(null,obj);
     })
     .catch(function(error){
@@ -335,7 +315,6 @@ function getphotos(batch, username,attend_event,cb){
       'username':username.username
     }})
     .then(function(obj){
-      console.log("3");
       cb(null,obj);
     })
     .catch(function(error){
