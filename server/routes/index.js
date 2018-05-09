@@ -1,5 +1,5 @@
 const userController = require('../controllers').User;
-const userModal = require('../models').User;
+var userModal = require('../models/user');
 const generator = require('generate-password');
 const nodemailer = require('nodemailer');
 
