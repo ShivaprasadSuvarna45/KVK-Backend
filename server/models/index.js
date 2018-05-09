@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const Sequelize = require('sequelize');
 const basename = path.basename(__filename);
-const env = "production";
+const env = "development";
 const config = require(`${__dirname}/../config/config.json`)[env];
 const db = {};
 
@@ -35,5 +35,5 @@ Object.keys(db).forEach(modelName => {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
-console.log(db.sequelize);
+console.log(db.sequelize.config);
 module.exports = db;
