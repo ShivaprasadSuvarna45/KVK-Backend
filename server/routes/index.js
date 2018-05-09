@@ -324,7 +324,7 @@ function getphotos(batch, username,attend_event,cb){
 }
 
 function getAllRecords(cb){
-  userModal.user
+  userModal.User
   .findAll()
   .then(function(obj){
     cb(null,obj);
