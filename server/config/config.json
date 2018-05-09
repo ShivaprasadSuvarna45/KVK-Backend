@@ -19,7 +19,6 @@
     "database": "d2k6ajc030e3lm",
     "host": "ec2-23-23-180-121.compute-1.amazonaws.com",
     "dialect": "postgres",
-    "protocol":"postgres",
     "port":"5432",
     "ssl":true
   }

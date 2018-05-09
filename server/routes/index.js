@@ -1,5 +1,5 @@
 const userController = require('../controllers').User;
-const userModal1 = require('../models');
+const userModal = require('../models').User;
 const generator = require('generate-password');
 const nodemailer = require('nodemailer');
 
@@ -324,7 +324,7 @@ function getphotos(batch, username,attend_event,cb){
 }
 
 function getAllRecords(cb){
-  return userModal1.userModel
+  return userModal
   .findAll()
   .then(function(obj){
     cb(null,obj);
