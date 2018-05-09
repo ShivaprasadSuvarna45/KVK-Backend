@@ -21,7 +21,6 @@
     "dialect": "postgres",
     "protocol":"postgres",
     "port":"5432",
-    "native": true,
     "ssl":true
   }
 }
