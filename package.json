@@ -7,7 +7,7 @@
     "build": "webpack -p",
     "dev": "nodemon --inspect ./app.js --exec babel-node --presets es2015",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node dist/server.js"
+    "start": "nodemon --inspect ./app.js --exec babel-node --presets es2015"
   },
   "repository": {
     "type": "git",
