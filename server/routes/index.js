@@ -134,7 +134,7 @@ app.get('/login', (req, res)=> {
  });
 
  app.get('/getalldetails',(req,res) =>{
-   getAllRecords(function(err,data){
+  getAllRecords(function(err,data){
       if(!err){
         res.send(data)
       }
@@ -323,13 +323,14 @@ function getphotos(batch, username,attend_event,cb){
   } 
 }
 
+
 function getAllRecords(cb){
-  return userModal
+  return  userModal
   .findAll()
   .then(function(obj){
     cb(null,obj);
   })
-  .catch(function(err){
-    cb(err);
+  .catch(function(error){
+    cb(error)
   });
 }
