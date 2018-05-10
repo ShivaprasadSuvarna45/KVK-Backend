@@ -2,7 +2,7 @@
  var webpack=require('webpack');
  var nodeExternals = require('webpack-node-externals');
 module.exports = {
-     entry: './app.js',
+     entry: './bin/www',
      output: {
          path: path.resolve(__dirname,'dist'),
          filename: 'server.js',
