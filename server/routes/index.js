@@ -227,7 +227,14 @@ function updatePassword(values,condition){
 }
 
 function updateDB(data,condition,cb){
-  var values = {'country':data.country,'city':data.city,'username':data.name,'batch':data.batch,'description':data.description,'profile_photo':data.profile_photo,'attend_event':data.attend_event,'meal_preference':data.meal_preference,'spouse':data.spouse,'family_members':data.family_members,'paid_via':data.paid_via,'confirmation_code':data.confirmation_code,'contribution_amount':data.contribution_amount,'payment_date':data.payment_date,'album_imgs':data.album_imgs}
+  var values = {}
+  if(data.payment_date){
+     values = {'country':data.country,'city':data.city,'username':data.name,'batch':data.batch,'description':data.description,'profile_photo':data.profile_photo,'attend_event':data.attend_event,'meal_preference':data.meal_preference,'spouse':data.spouse,'family_members':data.family_members,'paid_via':data.paid_via,'confirmation_code':data.confirmation_code,'contribution_amount':data.contribution_amount,'payment_date':data.payment_date,'album_imgs':data.album_imgs}
+  }
+  else{
+     values = {'country':data.country,'city':data.city,'username':data.name,'batch':data.batch,'description':data.description,'profile_photo':data.profile_photo,'attend_event':data.attend_event,'meal_preference':data.meal_preference,'spouse':data.spouse,'family_members':data.family_members,'paid_via':data.paid_via,'confirmation_code':data.confirmation_code,'contribution_amount':data.contribution_amount,'album_imgs':data.album_imgs}
+  }
+  
 
   return userModal
   .findOne({ where: condition })
