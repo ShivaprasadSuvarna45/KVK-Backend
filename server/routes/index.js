@@ -328,6 +328,18 @@ function getphotos(batch, username,attend_event,cb){
       cb(error)
     });
   } 
+  else if(attend_event){
+    return userModal
+    .findAll({ where:{
+      'attend_event':attend_event
+    }})
+    .then(function(obj){
+      cb(null,obj);
+    })
+    .catch(function(error){
+      cb(error)
+    });
+  } 
 }
 
 
